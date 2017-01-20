@@ -247,7 +247,7 @@ export class Overlay extends React.Component<IOverlayProps, IOverlayState> {
 
     private overlayWillClose() {
         document.removeEventListener("focus", this.handleDocumentFocus, /* useCapture */ true);
-        document.removeEventListener("mousedown", this.handleDocumentClick);
+        document.removeEventListener("mousedown touchstart", this.handleDocumentClick);
 
         document.body.classList.remove(Classes.OVERLAY_OPEN);
 
@@ -270,7 +270,7 @@ export class Overlay extends React.Component<IOverlayProps, IOverlayState> {
         openStack.push(this);
 
         if (this.props.canOutsideClickClose && !this.props.hasBackdrop) {
-            document.addEventListener("mousedown", this.handleDocumentClick);
+            document.addEventListener("mousedown touchstart", this.handleDocumentClick);
         }
         if (this.props.enforceFocus) {
             document.addEventListener("focus", this.handleDocumentFocus, /* useCapture */ true);
